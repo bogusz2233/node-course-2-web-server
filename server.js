@@ -1,7 +1,8 @@
+// Żeby odpalić:  node server.js -e js,hbs lub nodemon server.js -e js,hbs
 const express = require('express');
 const hbs = require("hbs");
 const fs = require('fs');
-
+const port = process.env.PORT || 3000;  // pobranie portu, gdy nie znajdzie wstawi 3000
 var app = express();
 
 hbs.registerPartials(__dirname + "/views/partials"); // dodanie pliku który jest czesciami html
@@ -55,6 +56,6 @@ app.get("/bad", (req, res) =>{
         errorMessage: "Something goes bad"
     });
 });
-app.listen(3000, () =>{
-    console.log("Server is up on port 3000")
+app.listen(port, () =>{ // port od heroku
+    console.log(`Server is up on port ${port}`);
 });
